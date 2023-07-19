@@ -10,7 +10,10 @@
 // @license      GPL-3.0
 // ==/UserScript==
 if (window.top !== window.self) {
-    window.addEventListener('load', () => {
+    window.addEventListener('load', async () => {
+      let offsetResponse = await fetch('https://raw.githubusercontent.com/hwatson381/place-qr-overlay/main/offset.json');
+      let offsets = await offsetResponse.json();
+
       document
         .getElementsByTagName("mona-lisa-embed")[0]
         .shadowRoot
@@ -23,20 +26,7 @@ if (window.top !== window.self) {
               const img = document.createElement("img");
               // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
               img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
-              // img.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px;";
-              // img.style = "position: absolute;left: 1859px;top: 618px;image-rendering: pixelated;width: 33px;height: 33px;";
-              img.style = "position: absolute;left: 1870px;top: 917px;image-rendering: pixelated;width: 33px;height: 33px;";
-              console.log(img);
-              return img;
-          })())
-        .appendChild(
-          (function () {
-              const img = document.createElement("img");
-              // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
-              img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
-              // img.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px;";
-              // img.style = "position: absolute;left: 1859px;top: 618px;image-rendering: pixelated;width: 33px;height: 33px;";
-              img.style = "position: absolute;left: 1300px;top: 1916px;image-rendering: pixelated;width: 33px;height: 33px;";
+              img.style = `position: absolute;left: ${offsets.x}px;top: ${offsets.y}px;image-rendering: pixelated;width: 33px;height: 33px;`;
               console.log(img);
               return img;
           })())
