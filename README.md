@@ -19,7 +19,7 @@ This is a [userScript](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/
   * For firefox: [Firfox Browser Add-ons: Violentmonkey](https://addons.mozilla.org/en-GB/firefox/addon/violentmonkey/)
   * If you're on Safari, I don't have the time to support it right now, but the [TamperMonkey](https://www.tampermonkey.net/?ext=dhdg&browser=safari) plugin manager works on Safari and should work mostly the same way as ViolentMonkey, so give it a try.
 
-2. Install the user script by clicking this [link](https://github.com/marcus-grant/place-qr-overlay/raw/main/userscript.user.js) to install it to the script manager.
+2. Install the user script by clicking this [link](https://github.com/hwatson381/place-qr-overlay/raw/main/userscript.user.js) to install it to the script manager.
   * It just leads to the same `userscript.user.js` script in this repository above and causes your ViolentMonkey Plugin to add it with a menu to confirm it.
 
 ## Developer Notes
