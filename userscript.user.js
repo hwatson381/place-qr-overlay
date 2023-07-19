@@ -22,7 +22,7 @@ if (window.top !== window.self) {
           (function () {
               const img = document.createElement("img");
               // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
-              img.src = "https://github.com/marcus-grant/place-qr-overlay/raw/main/qroverlay.png";
+              img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
               // img.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px;";
               // img.style = "position: absolute;left: 1859px;top: 618px;image-rendering: pixelated;width: 33px;height: 33px;";
               img.style = "position: absolute;left: 1870px;top: 917px;image-rendering: pixelated;width: 33px;height: 33px;";
@@ -33,7 +33,7 @@ if (window.top !== window.self) {
           (function () {
               const img = document.createElement("img");
               // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
-              img.src = "https://github.com/marcus-grant/place-qr-overlay/raw/main/qroverlay.png";
+              img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
               // img.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px;";
               // img.style = "position: absolute;left: 1859px;top: 618px;image-rendering: pixelated;width: 33px;height: 33px;";
               img.style = "position: absolute;left: 1300px;top: 1916px;image-rendering: pixelated;width: 33px;height: 33px;";
