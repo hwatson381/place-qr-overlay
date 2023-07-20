@@ -16,8 +16,8 @@ if (window.top !== window.self) {
 
 async function main() {
     let offsets = {x:0, y:0};
-    offsets.x = parseInt(prompt('enter x coord for top left corner')) - 500;
-    offsets.y = parseInt(prompt('enter y coord for top left corner')) - 500;
+    offsets.x = parseInt(prompt('enter x coord for top left corner')) + 500;
+    offsets.y = parseInt(prompt('enter y coord for top left corner')) + 500;
 
     //let offsetResponse = await fetch('https://raw.githubusercontent.com/hwatson381/place-qr-overlay/main/offset.json');
     //let offsets = await offsetResponse.json();
