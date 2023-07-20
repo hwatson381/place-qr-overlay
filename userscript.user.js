@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Overlay
 // @namespace    https://github.com/marcus-grant/place-overlay
-// @version      1.0.5
+// @version      1.0.6
 // @description  A visual overlay to show errors in tile colors of a desired image in r/place
 // @author       github.com/marcus-grant
 // @match        https://garlic-bread.reddit.com/embed*
@@ -11,6 +11,13 @@
 // @license      GPL-3.0
 // ==/UserScript==
 
+let offsets = {
+    x:0,
+    y:0,
+    adjustmentX: 500,
+    adjustmentY: 500
+}
+
 if (window.top !== window.self) {
     window.addEventListener('load', main, false);
 }
@@ -18,16 +25,9 @@ if (window.top !== window.self) {
 async function main() {
     addModal();
 
-    let offsets = JSON.parse(GM_getResourceText('offsets'));
+    offsets = JSON.parse(GM_getResourceText('offsets'));
 
     document.getElementById('coordstring').textContent = `x: ${offsets.x}, y: ${offsets.y}`;
-
-    let qrLinkContainer = document.getElementById('qr-link');
-    qrLinkContainer.innerHTML = '';
-    let link = document.createElement('a');
-    link.href = `https://new.reddit.com/r/place/?screenmode=fullscreen&cx=${offsets.x}&cy=${offsets.y}&px=21`;
-    link.textContent = 'jump';
-    qrLinkContainer.appendChild(link);
 
     //Adjust since the coords of top left spot are negative
     offsets.x += offsets.adjustmentX;
@@ -43,6 +43,7 @@ async function main() {
       .appendChild(
         (function () {
             const img = document.createElement("img");
+            img.id = 'qr-overlay';
             // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
             img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
             img.style = `position: absolute;left: ${offsets.x}px;top: ${offsets.y}px;image-rendering: pixelated;width: 33px;height: 33px;`;
@@ -54,7 +55,7 @@ async function main() {
 function addModal() {
   const cornerModal = `
       <div>Coords: <span id="coordstring">Loading...</span></div>
-      <div>Link to QR <span id="qr-link">(loading...)</span></div>
+      <button id="change-coords">Change Coords</button>
   `;
 
   let cornerModalEl = document.createElement('div');
@@ -62,4 +63,25 @@ function addModal() {
   cornerModalEl.style = 'z-index: 9999999;background-color: white;position: fixed;bottom: 5px;right: 5px;font-size:0.7em;border-top: 1px solid black;padding: 5px;font-family: helvetica, sans-serif;display:block';
   cornerModalEl.innerHTML = cornerModal;
   document.body.appendChild(cornerModalEl);
+
+  document.getElementById('change-coords').addEventListener('click', ()=>{
+      offsets.x = parseInt(prompt('new x coord'));
+      offsets.y = parseInt(prompt('new y coord'));
+
+      document.getElementById('coordstring').textContent = `x: ${offsets.x}, y: ${offsets.y}`;
+
+      offsets.x += offsets.adjustmentX;
+      offsets.y += offsets.adjustmentY;
+
+      let overlayImg = document
+        .getElementsByTagName("garlic-bread-embed")[0]
+        .shadowRoot
+        .children[0]
+        .getElementsByTagName("garlic-bread-canvas")[0]
+        .shadowRoot
+        .children[0]
+        .querySelector('#qr-overlay');
+      overlayImg.style.left = `${offsets.x}px`;
+      overlayImg.style.top = `${offsets.y}px`;
+  });
 }
