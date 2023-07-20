@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         r/Place Overlay
 // @namespace    https://github.com/marcus-grant/place-overlay
-// @version      1.0.3
+// @version      1.0.4
 // @description  A visual overlay to show errors in tile colors of a desired image in r/place
 // @author       github.com/marcus-grant
 // @match        https://garlic-bread.reddit.com/embed*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=reddit.com
-// @grant        none
+// @grant        GM_getResourceText
+// @resource     offsets         https://raw.githubusercontent.com/hwatson381/place-qr-overlay/main/offset.json
 // @license      GPL-3.0
 // ==/UserScript==
 
@@ -15,12 +16,21 @@ if (window.top !== window.self) {
 }
 
 async function main() {
-    let offsets = {x:0, y:0};
-    offsets.x = parseInt(prompt('enter x coord for top left corner')) + 500;
-    offsets.y = parseInt(prompt('enter y coord for top left corner')) + 500;
+    addModal();
 
-    //let offsetResponse = await fetch('https://raw.githubusercontent.com/hwatson381/place-qr-overlay/main/offset.json');
-    //let offsets = await offsetResponse.json();
+    let offsets = JSON.parse(GM_getResourceText('offsets'));
+
+    document.getElementById('coordstring').textContent = `x: ${offsets.x}, y: ${offsets.y}`;
+
+    let qrLinkContainer = document.getElementById('qr-link');
+    qrLinkContainer.innerHTML = '';
+    let link = document.createElement('a');
+    link.href = `https://www.reddit.com/r/place/?screenmode=fullscreen&cx=${offsets.x}&cy=${offsets.y}&px=21`;
+    link.textContent = 'jump';
+    qrLinkContainer.appendChild(link);
+
+    offsets.x += 500;
+    offsets.y += 500;
 
       document
         .getElementsByTagName("garlic-bread-embed")[0]
@@ -38,4 +48,17 @@ async function main() {
             console.log(img);
             return img;
         })())
+}
+
+function addModal() {
+  const cornerModal = `
+      <div>Coords: <span id="coordstring">Loading...</span></div>
+      <div>Link to QR <span id="qr-link">(loading...)</span></div>
+  `;
+
+  let cornerModalEl = document.createElement('div');
+  cornerModalEl.id = 'mod-indicator';
+  cornerModalEl.style = 'z-index: 9999999;background-color: white;position: fixed;bottom: 5px;right: 5px;font-size:0.7em;border-top: 1px solid black;padding: 5px;font-family: helvetica, sans-serif;display:block';
+  cornerModalEl.innerHTML = cornerModal;
+  document.body.appendChild(cornerModalEl);
 }
