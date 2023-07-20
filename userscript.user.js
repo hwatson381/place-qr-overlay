@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Overlay
 // @namespace    https://github.com/marcus-grant/place-overlay
-// @version      1.0.4
+// @version      1.0.5
 // @description  A visual overlay to show errors in tile colors of a desired image in r/place
 // @author       github.com/marcus-grant
 // @match        https://garlic-bread.reddit.com/embed*
@@ -29,8 +29,9 @@ async function main() {
     link.textContent = 'jump';
     qrLinkContainer.appendChild(link);
 
-    offsets.x += 500;
-    offsets.y += 500;
+    //Adjust since the coords of top left spot are negative
+    offsets.x += offsets.adjustmentX;
+    offsets.y += offsets.adjustmentY;
 
       document
         .getElementsByTagName("garlic-bread-embed")[0]
