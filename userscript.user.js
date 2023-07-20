@@ -25,7 +25,7 @@ async function main() {
     let qrLinkContainer = document.getElementById('qr-link');
     qrLinkContainer.innerHTML = '';
     let link = document.createElement('a');
-    link.href = `https://www.reddit.com/r/place/?screenmode=fullscreen&cx=${offsets.x}&cy=${offsets.y}&px=21`;
+    link.href = `https://new.reddit.com/r/place/?screenmode=fullscreen&cx=${offsets.x}&cy=${offsets.y}&px=21`;
     link.textContent = 'jump';
     qrLinkContainer.appendChild(link);
 
