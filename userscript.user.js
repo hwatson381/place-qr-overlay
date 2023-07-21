@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Overlay
 // @namespace    https://github.com/marcus-grant/place-overlay
-// @version      1.0.6
+// @version      1.0.7
 // @description  A visual overlay to show errors in tile colors of a desired image in r/place
 // @author       github.com/marcus-grant
 // @match        https://garlic-bread.reddit.com/embed*
@@ -55,7 +55,9 @@ async function main() {
 function addModal() {
   const cornerModal = `
       <div>Coords: <span id="coordstring">Loading...</span></div>
-      <button id="change-coords">Change Coords</button>
+      <button id="change-coords">Change Coords</button><br>
+      <input type="checkbox" id="toggle-overlay" checked>
+      <label for="checkbox"> Enable Overlay</label>
   `;
 
   let cornerModalEl = document.createElement('div');
@@ -83,5 +85,17 @@ function addModal() {
         .querySelector('#qr-overlay');
       overlayImg.style.left = `${offsets.x}px`;
       overlayImg.style.top = `${offsets.y}px`;
+  });
+
+  document.getElementById('toggle-overlay').addEventListener('click', () => {
+    let overlayImg = document
+        .getElementsByTagName("garlic-bread-embed")[0]
+        .shadowRoot
+        .children[0]
+        .getElementsByTagName("garlic-bread-canvas")[0]
+        .shadowRoot
+        .children[0]
+        .querySelector('#qr-overlay');
+    overlayImg.style.display = document.getElementById('toggle-overlay').checked ? 'block' : 'none';
   });
 }
