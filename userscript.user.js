@@ -15,7 +15,7 @@ let offsets = {
     x:0,
     y:0,
     adjustmentX: 1000,
-    adjustmentY: 1000
+    adjustmentY: 500
 }
 
 if (window.top !== window.self) {
