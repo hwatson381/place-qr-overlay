@@ -62,7 +62,7 @@ function addModal() {
 
   let cornerModalEl = document.createElement('div');
   cornerModalEl.id = 'mod-indicator';
-  cornerModalEl.style = 'z-index: 9999999;background-color: white;position: fixed;bottom: 5px;right: 5px;font-size:0.7em;border-top: 1px solid black;padding: 5px;font-family: helvetica, sans-serif;display:block';
+  cornerModalEl.style = 'z-index: 9999999;background-color: white;position: fixed;bottom: 5px;left: 5px;font-size:0.7em;border-top: 1px solid black;padding: 5px;font-family: helvetica, sans-serif;display:block';
   cornerModalEl.innerHTML = cornerModal;
   document.body.appendChild(cornerModalEl);
 
