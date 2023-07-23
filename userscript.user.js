@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Overlay
 // @namespace    https://github.com/marcus-grant/place-overlay
-// @version      1.0.7
+// @version      1.0.8
 // @description  A visual overlay to show errors in tile colors of a desired image in r/place
 // @author       github.com/marcus-grant
 // @match        https://garlic-bread.reddit.com/embed*
