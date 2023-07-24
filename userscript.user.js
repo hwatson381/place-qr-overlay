@@ -45,7 +45,7 @@ async function main() {
             const img = document.createElement("img");
             img.id = 'qr-overlay';
             // img.src = "https://drive.google.com/file/d/1VEhNsbR4aHDePwOLmiNlxctv39TeGnci/view?usp=sharing";
-            img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/qroverlay.png";
+            img.src = "https://github.com/hwatson381/place-qr-overlay/raw/main/duckqr.png";
             img.style = `position: absolute;left: ${offsets.x}px;top: ${offsets.y}px;image-rendering: pixelated;width: 33px;height: 33px;`;
             console.log(img);
             return img;
