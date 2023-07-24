@@ -12,10 +12,10 @@
 // ==/UserScript==
 
 let offsets = {
-    x:0,
-    y:0,
-    adjustmentX: 1000,
-    adjustmentY: 500
+    x:-110,
+    y:854,
+    adjustmentX: 1500,
+    adjustmentY: 1000
 }
 
 if (window.top !== window.self) {
